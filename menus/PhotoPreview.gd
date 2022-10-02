@@ -9,7 +9,7 @@ var photo: Photo
 var should_call_save = true
 
 func save():
-#  photo.image_texture.get_image().save_png("res://test.png")
+
   close_preview()
   if should_call_save:
     emit_signal("photo_saved", photo)
@@ -25,3 +25,13 @@ func close_preview():
   $AnimationPlayer.play("close")
   get_tree().paused = false
   emit_signal("close")
+
+func export():
+  var regex = RegEx.new()
+  regex.compile("^[a-zA-Z0-9](?:[a-zA-Z0-9 ._-]*[a-zA-Z0-9])?$")
+  var filename: String = $Export/MarginContainer/VBoxContainer2/Filename.text
+  if filename.length() > 0 && regex.search(filename):
+    photo.image_texture.get_image().save_jpg("./" + filename + ".jpg", 1)
+    $AnimationPlayer.play("export_done")
+  else:
+    $Export/MarginContainer/VBoxContainer2/Error.show()

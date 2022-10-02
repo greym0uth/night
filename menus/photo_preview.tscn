@@ -1,8 +1,183 @@
-[gd_scene load_steps=8 format=3 uid="uid://b1s1lgswntnr6"]
+[gd_scene load_steps=11 format=3 uid="uid://b1s1lgswntnr6"]
 
 [ext_resource type="Texture2D" uid="uid://cfmu1iwuykf7n" path="res://inventory/test.png" id="1_1rhmm"]
 [ext_resource type="Script" path="res://menus/PhotoPreview.gd" id="1_quiyl"]
 [ext_resource type="Theme" uid="uid://b7qwvkdrqmukw" path="res://menus/theme.tres" id="3_lwlcb"]
+
+[sub_resource type="Animation" id="Animation_yfuct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SnapPreview:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SnapPreview:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.593412]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SnapPreview:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Preview:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Preview:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SnapPreview:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Export:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Export:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ExportDone:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ExportDone:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kmotm"]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Preview:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SnapPreview:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SnapPreview:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Preview:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0ppp5"]
 resource_name = "open"
@@ -46,7 +221,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer:visible")
+tracks/3/path = NodePath("Preview:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -58,7 +233,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer:modulate")
+tracks/4/path = NodePath("Preview:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -80,92 +255,45 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_yfuct"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_toao8"]
+resource_name = "export"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SnapPreview:visible")
+tracks/0/path = NodePath("Export:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [false, true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SnapPreview:rotation")
+tracks/1/path = NodePath("Export:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [-0.593412]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SnapPreview:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MarginContainer:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("SnapPreview:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_kmotm"]
-resource_name = "close"
-length = 0.3
+[sub_resource type="Animation" id="Animation_bj27e"]
+resource_name = "export_done"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MarginContainer:visible")
+tracks/0/path = NodePath("Export:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -173,36 +301,64 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SnapPreview:visible")
+tracks/1/path = NodePath("Export:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("SnapPreview:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExportDone:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("MarginContainer:modulate")
+tracks/3/path = NodePath("ExportDone:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i3l8w"]
+resource_name = "export_done_close"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExportDone:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExportDone:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -211,6 +367,9 @@ tracks/3/keys = {
 _data = {
 "RESET": SubResource("Animation_yfuct"),
 "close": SubResource("Animation_kmotm"),
+"export": SubResource("Animation_toao8"),
+"export_done": SubResource("Animation_bj27e"),
+"export_done_close": SubResource("Animation_i3l8w"),
 "open": SubResource("Animation_0ppp5")
 }
 
@@ -245,7 +404,7 @@ libraries = {
 "": SubResource("AnimationLibrary_j7db4")
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Preview" type="MarginContainer" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 7
@@ -253,31 +412,178 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 52.0
-offset_top = -90.0001
-offset_right = 169.0
-offset_bottom = 5.99994
+offset_left = -9.00006
+offset_top = -96.0
+offset_right = 181.0
 grow_horizontal = 2
 grow_vertical = 0
 rotation = 0.200713
 theme = ExtResource("3_lwlcb")
 theme_override_constants/margin_bottom = 64
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-offset_right = 117.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Preview"]
+layout_mode = 2
+offset_right = 190.0
 offset_bottom = 32.0
 theme_override_constants/separation = 12
 
-[node name="Discard" type="Button" parent="MarginContainer/HBoxContainer"]
-offset_right = 63.0
+[node name="Export" type="Button" parent="Preview/HBoxContainer"]
+layout_mode = 2
+offset_right = 61.0
+offset_bottom = 32.0
+text = "Export"
+
+[node name="Discard" type="Button" parent="Preview/HBoxContainer"]
+layout_mode = 2
+offset_left = 73.0
+offset_right = 136.0
 offset_bottom = 32.0
 text = "Discard"
 
-[node name="Save" type="Button" parent="MarginContainer/HBoxContainer"]
-offset_left = 75.0
-offset_right = 117.0
+[node name="Save" type="Button" parent="Preview/HBoxContainer"]
+layout_mode = 2
+offset_left = 148.0
+offset_right = 190.0
 offset_bottom = 32.0
 text = "Save"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Discard" to="." method="close_preview"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Save" to="." method="save"]
+[node name="Export" type="PanelContainer" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = -62.5
+offset_right = 78.0
+offset_bottom = 62.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="Export"]
+layout_mode = 2
+offset_right = 264.0
+offset_bottom = 139.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Export/MarginContainer"]
+custom_minimum_size = Vector2i(240, 0)
+layout_mode = 2
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 252.0
+offset_bottom = 123.0
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="Export/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+offset_right = 240.0
+offset_bottom = 21.0
+theme = ExtResource("3_lwlcb")
+theme_override_font_sizes/font_size = 12
+text = "Name"
+
+[node name="Filename" type="TextEdit" parent="Export/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2i(0, 38)
+layout_mode = 2
+offset_top = 29.0
+offset_right = 240.0
+offset_bottom = 67.0
+placeholder_text = "cool_photo"
+
+[node name="Error" type="Label" parent="Export/MarginContainer/VBoxContainer2"]
+visible = false
+layout_mode = 2
+offset_top = 75.0
+offset_right = 240.0
+offset_bottom = 101.0
+theme_override_colors/font_color = Color(1, 0.407843, 0.411765, 1)
+text = "Invalid filename!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Export/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+offset_top = 75.0
+offset_right = 240.0
+offset_bottom = 107.0
+alignment = 2
+
+[node name="Cancel" type="Button" parent="Export/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+offset_left = 132.0
+offset_right = 194.0
+offset_bottom = 32.0
+theme = ExtResource("3_lwlcb")
+text = "Cancel"
+
+[node name="Save" type="Button" parent="Export/MarginContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+offset_left = 198.0
+offset_right = 240.0
+offset_bottom = 32.0
+theme = ExtResource("3_lwlcb")
+text = "Save"
+
+[node name="ExportDone" type="PanelContainer" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_lwlcb")
+
+[node name="MarginContainer" type="MarginContainer" parent="ExportDone"]
+layout_mode = 2
+offset_right = 146.0
+offset_bottom = 110.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ExportDone/MarginContainer"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 114.0
+offset_bottom = 98.0
+
+[node name="Label" type="Label" parent="ExportDone/MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_right = 82.0
+offset_bottom = 50.0
+theme = ExtResource("3_lwlcb")
+theme_override_font_sizes/font_size = 32
+text = "Done!"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="ExportDone/MarginContainer/VBoxContainer"]
+layout_mode = 2
+offset_top = 54.0
+offset_right = 82.0
+offset_bottom = 86.0
+text = "Close"
+
+[connection signal="pressed" from="Preview/HBoxContainer/Export" to="AnimationPlayer" method="play" binds= ["export"]]
+[connection signal="pressed" from="Preview/HBoxContainer/Discard" to="." method="close_preview"]
+[connection signal="pressed" from="Preview/HBoxContainer/Save" to="." method="save"]
+[connection signal="pressed" from="Export/MarginContainer/VBoxContainer2/HBoxContainer/Cancel" to="AnimationPlayer" method="play_backwards" binds= ["export"]]
+[connection signal="pressed" from="Export/MarginContainer/VBoxContainer2/HBoxContainer/Save" to="." method="export"]
+[connection signal="pressed" from="ExportDone/MarginContainer/VBoxContainer/Close" to="AnimationPlayer" method="play" binds= ["export_done_close"]]
