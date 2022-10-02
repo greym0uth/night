@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnllpuivfafaq"]
+
+[ext_resource type="PackedScene" uid="uid://sh7ukpmj5pgy" path="res://camera.tscn" id="1_r6hdu"]
+[ext_resource type="PackedScene" uid="uid://6rlibcmbcr3v" path="res://objects/meteor/meteor_spawner.tscn" id="2_55sy5"]
+[ext_resource type="PackedScene" uid="uid://biyewyokn34mq" path="res://inventory/photo_inventory.tscn" id="3_innk2"]
+[ext_resource type="PackedScene" uid="uid://b2lrkvdrld5wu" path="res://menus/pause.tscn" id="4_u0umv"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_eagv8"]
+size = Vector2(100, 100)
+
+[node name="Main" type="Node3D"]
+
+[node name="Camera" parent="." instance=ExtResource("1_r6hdu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+current = true
+near = 1.0
+
+[node name="MeshInstance3d" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00586009, 0, 0.00188684)
+mesh = SubResource("PlaneMesh_eagv8")
+
+[node name="MeteorSpawner" parent="." instance=ExtResource("2_55sy5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.88072, 0)
+spawn_frequency = 4.0
+
+[node name="PhotoInventory" parent="." instance=ExtResource("3_innk2")]
+
+[node name="Pause" parent="." instance=ExtResource("4_u0umv")]
+
+[connection signal="photo_captured" from="Camera" to="PhotoInventory" method="add"]
+[connection signal="photo_opened" from="PhotoInventory" to="Camera" method="open_photo"]

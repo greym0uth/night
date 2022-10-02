@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://6rlibcmbcr3v"]
+
+[ext_resource type="Script" path="res://objects/meteor/MeteorSpawner.gd" id="1_j3cux"]
+[ext_resource type="PackedScene" uid="uid://ba1vtj18lwxo2" path="res://objects/meteor/meteor.tscn" id="2_3g5bc"]
+
+[node name="MeteorSpawner" type="Node3D"]
+script = ExtResource("1_j3cux")
+meteor_scene = ExtResource("2_3g5bc")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="Meteors" type="Node3D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

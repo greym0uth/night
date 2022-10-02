@@ -1,0 +1,174 @@
+[gd_scene load_steps=15 format=3 uid="uid://sh7ukpmj5pgy"]
+
+[ext_resource type="Script" path="res://CameraController.gd" id="1_nvheu"]
+[ext_resource type="Texture2D" uid="uid://c1rsvysuy7jag" path="res://camera_overlay.png" id="2_vdvjj"]
+[ext_resource type="PackedScene" uid="uid://b1s1lgswntnr6" path="res://menus/photo_preview.tscn" id="3_gvjrj"]
+
+[sub_resource type="Gradient" id="Gradient_wncso"]
+offsets = PackedFloat32Array(0.976331, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_tgdgr"]
+noise_type = 5
+seed = 6
+frequency = 0.618
+offset = Vector3(1, 0, 0)
+fractal_gain = 0.01
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_udscs"]
+width = 2000
+height = 2000
+seamless = true
+color_ramp = SubResource("Gradient_wncso")
+noise = SubResource("FastNoiseLite_tgdgr")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bh7as"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.0196078, 0.0235294, 0.0862745, 1)
+sky_curve = 0.356762
+sky_cover = SubResource("NoiseTexture2D_udscs")
+ground_bottom_color = Color(0.0666667, 0.0784314, 0.137255, 1)
+ground_horizon_color = Color(0.0196078, 0.0235294, 0.0862745, 1)
+ground_curve = 0.367585
+
+[sub_resource type="Sky" id="Sky_q3o15"]
+sky_material = SubResource("ProceduralSkyMaterial_bh7as")
+
+[sub_resource type="Environment" id="Environment_5eis7"]
+background_mode = 2
+sky = SubResource("Sky_q3o15")
+
+[sub_resource type="Animation" id="Animation_0v4cr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/Crosshair:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CenterContainer/Crosshair:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_15wqj"]
+resource_name = "snap"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"snap"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CenterContainer/Crosshair:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_7p8c1"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/CenterContainer/Crosshair:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/CenterContainer/Crosshair:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_df64w"]
+_data = {
+"RESET": SubResource("Animation_0v4cr"),
+"show": SubResource("Animation_7p8c1"),
+"snap": SubResource("Animation_15wqj")
+}
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5h3o2"]
+points = PackedVector3Array(0, 0, 0, -0.7, 0.65, -1, 0.7, 0.65, -1, 0.7, -0.65, -1, -0.7, -0.65, -1)
+
+[node name="Camera" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.555583, 0)
+environment = SubResource("Environment_5eis7")
+script = ExtResource("1_nvheu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="TextureRect" parent="CanvasLayer/CenterContainer"]
+offset_left = 276.0
+offset_top = 24.0
+offset_right = 876.0
+offset_bottom = 624.0
+texture = ExtResource("2_vdvjj")
+stretch_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_df64w")
+}
+
+[node name="Area3d" type="Area3D" parent="."]
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="Area3d"]
+transform = Transform3D(1000, 0, 0, 0, 1000, 0, 0, 0, 1000, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5h3o2")
+
+[node name="PhotoPreview" parent="." instance=ExtResource("3_gvjrj")]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="Area3d" to="." method="_on_area_3d_area_entered"]
+[connection signal="area_exited" from="Area3d" to="." method="_on_area_3d_area_exited"]
+[connection signal="close" from="PhotoPreview" to="AnimationPlayer" method="play" binds= ["show"]]
+[connection signal="photo_saved" from="PhotoPreview" to="." method="_on_photo_preview_photo_saved"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7pmjtttcsmn7"]
+
+[ext_resource type="Script" path="res://inventory/PhotoInventoryItem.gd" id="1_vmik6"]
+
+[node name="PhotoInventoryItem" type="TextureButton"]
+custom_minimum_size = Vector2i(30, 35)
+offset_right = 30.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(240, 280)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("1_vmik6")

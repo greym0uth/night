@@ -1,0 +1,144 @@
+[gd_scene load_steps=13 format=3 uid="uid://ba1vtj18lwxo2"]
+
+[ext_resource type="Material" uid="uid://bjw3uva3bug3i" path="res://objects/meteor/meteor_material.tres" id="2_7mlpy"]
+[ext_resource type="Script" path="res://objects/meteor/Meteor.gd" id="5_wynl8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1rxw"]
+size = Vector3(10, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_hhfxd"]
+colors = PackedColorArray(1, 0.670699, 0.367139, 1, 0.125, 0.0761184, 0.0751857, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ss1p8"]
+gradient = SubResource("Gradient_hhfxd")
+
+[sub_resource type="Curve" id="Curve_vot76"]
+max_value = 4.0
+_data = [Vector2(0, 2.10909), 0.0, -7.10909, 0, 0, Vector2(1, 0), -0.0733172, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jwpqn"]
+curve = SubResource("Curve_vot76")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lubn2"]
+spread = 1.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_max = 2.0
+damping_min = 1.0
+damping_max = 8.0
+scale_min = 0.0
+scale_max = 0.0
+scale_curve = SubResource("CurveTexture_jwpqn")
+color_ramp = SubResource("GradientTexture1D_ss1p8")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6pr03"]
+material = ExtResource("2_7mlpy")
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_xgtl7"]
+resource_name = "fade"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GpuParticles3d:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GpuParticles3d:process_material:scale_max")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 6, 7.5),
+"transitions": PackedFloat32Array(2, 2, 2, 2),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GpuParticles3d:process_material:scale_min")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 6, 7.5),
+"transitions": PackedFloat32Array(2, 2, 2, 2),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_74rqn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GpuParticles3d:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GpuParticles3d:process_material:scale_max")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GpuParticles3d:process_material:scale_min")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r5vtl"]
+_data = {
+"RESET": SubResource("Animation_74rqn"),
+"fade": SubResource("Animation_xgtl7")
+}
+
+[node name="Meteor" type="Area3D"]
+script = ExtResource("5_wynl8")
+
+[node name="CollisionShape3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+shape = SubResource("BoxShape3D_m1rxw")
+
+[node name="GpuParticles3d" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+emitting = false
+amount = 200
+lifetime = 3.0
+visibility_aabb = AABB(-1.00001, -1.42717, -1.50773, 31.6586, 2.90132, 2.96811)
+process_material = SubResource("ParticleProcessMaterial_lubn2")
+draw_pass_1 = SubResource("BoxMesh_6pr03")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r5vtl")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

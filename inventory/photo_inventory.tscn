@@ -1,0 +1,90 @@
+[gd_scene load_steps=7 format=3 uid="uid://biyewyokn34mq"]
+
+[ext_resource type="Script" path="res://inventory/PhotoInventory.gd" id="1_5pfcd"]
+[ext_resource type="PackedScene" uid="uid://b7pmjtttcsmn7" path="res://inventory/photo_inventory_item.tscn" id="2_lrays"]
+[ext_resource type="Theme" uid="uid://b7qwvkdrqmukw" path="res://menus/theme.tres" id="3_yrp7e"]
+
+[sub_resource type="Animation" id="Animation_bq1u4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HBoxContainer:theme_override_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-24]
+}
+
+[sub_resource type="Animation" id="Animation_rlocp"]
+resource_name = "space"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/VBoxContainer/HBoxContainer:theme_override_constants/separation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-24, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvh4d"]
+_data = {
+"RESET": SubResource("Animation_bq1u4"),
+"space": SubResource("Animation_rlocp")
+}
+
+[node name="PhotoInventory" type="CanvasLayer"]
+script = ExtResource("1_5pfcd")
+photo_inventory_item = ExtResource("2_lrays")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme = ExtResource("3_yrp7e")
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+offset_left = 16.0
+offset_right = 103.0
+offset_bottom = 82.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+offset_right = 87.0
+offset_bottom = 38.0
+theme_override_font_sizes/font_size = 24
+text = "Photos:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2i(0, 40)
+offset_top = 42.0
+offset_bottom = 82.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/separation = -24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cvh4d")
+}
+
+[node name="HoverDebounce" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="mouse_entered" from="MarginContainer" to="." method="_on_hover"]
+[connection signal="mouse_exited" from="MarginContainer" to="." method="_on_hover_end"]
+[connection signal="timeout" from="HoverDebounce" to="." method="_collapse"]
